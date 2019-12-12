@@ -27,3 +27,4 @@ Route::post('article/store', 'HomeController@storeArticle')->name('storeArticle'
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback','Auth\LoginController@handleProviderCallback');
 
+Route::post('formSubmit','HomeController@formSubmit');

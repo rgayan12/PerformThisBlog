@@ -1,12 +1,15 @@
     $(document).ready(function() {
-                     $('.mdb-select').materialSelect();
-          $('.js-example-basic-multiple').select2();
+          $('.mdb-select').materialSelect();
+          $('.js-example-basic-multiple').select2({
+             tags: true,
+            tokenSeparators: [',', ' ']
+          });
           });
     new WOW().init();
 
  tinymce.init({
   selector: '#content-tincy',
-  plugins: 'print preview fullpage paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen link template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount textpattern noneditable help charmap quickbars emoticons',
+  plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen link template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount textpattern noneditable help charmap quickbars emoticons',
   menubar: 'file edit view insert format tools table help',
   toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | template link anchor codesample | ltr rtl',
   toolbar_sticky: true,
