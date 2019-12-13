@@ -11,9 +11,9 @@
           <i class="fas fa-chart-pie mr-3"></i>Dashboard
         </a>
         -->
-        <a href="{{route('compose')}}" class="list-group-item list-group-item-action waves-effect">
+        <a href="{{route('article.create')}}" class="list-group-item list-group-item-action waves-effect">
           <i class="fas fa-user mr-3"></i>Compose</a>
-        <a href="#" class="list-group-item list-group-item-action waves-effect">
+        <a href="{{route('article.index')}}" class="list-group-item list-group-item-action waves-effect">
           <i class="fas fa-table mr-3"></i>My Articles</a>
         <a href="#" class="list-group-item list-group-item-action waves-effect">
           <i class="fas fa-map mr-3"></i>Profile</a>

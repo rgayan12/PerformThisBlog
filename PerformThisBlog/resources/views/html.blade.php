@@ -3,17 +3,8 @@
 @section('content')
   <!--Main layout-->
 
-      @if($article->exists)
-      <form method="POST" action="{{ route('article.edit', $article->id) }}" enctype="multipart/form-data">
-        @method('PATCH')
 
-    @else   
-      <form method="POST" action="{{ route('article.create') }}" enctype="multipart/form-data">
-
-    @endif 
-
-
-   
+   <form method="POST" name="frmCompose" action="{{ route('storeArticle') }}" enctype="multipart/form-data">
 @csrf
     <div class="container-fluid mt-5">
       <!-- SideNav slide-out button -->
@@ -24,14 +15,8 @@
         <div class="card-body d-sm-flex justify-content-between">
 
           <div class="md-form mt-3 w-100">
-              <input type="text" id="blogtitle" name="title" class="form-control" required="true" value="{{ old('title', $article->title) }}">
-              <label for="title">Article Title</label>
-              @if($errors->has('title'))
-                <div class="alert alert-danger">
-                    {{ $errors->first('title') }}
-                </div>
-              @endif
-            
+                <input type="text" id="blogtitle" name="title" class="form-control" required="true">
+                <label for="materialContactFormName">Article Title</label>
             </div>
 
         </div>
@@ -51,17 +36,27 @@
 
             <!--Card content-->
             <div class="card-body">
-            	 <textarea id="content-tincy" name="content" placeholder="Awesome article">{!! old('content', $article->content) !!}</textarea>
-              @if($errors->has('content'))
-               <div class="alert alert-danger">
-                   {{ $errors->first('content') }}
-               </div>
-            @endif
-             </div>
+            	 <textarea id="content-tincy" name="content" placeholder="Awesome article"></textarea>
+   			     </div>
 
-      			</div>
+			</div>
 
             </div>
+
+        
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-3 mb-4">
+
+          <!--Card-->
+         
+          <!--/.Card-->
+
+
+
+
+        </div>
         <!--Grid column-->
 
       </div>
@@ -80,16 +75,11 @@
             <div class="card-body">
 
   					<div class="md-form mb-4 pink-textarea active-pink-textarea">
-					  <textarea id="summarybox" name="summary" class="md-textarea form-control" rows="3" maxlength="200" required>{{ old('summary', $article->meta_description) }}</textarea>
+					  <textarea id="summarybox" name="summary" class="md-textarea form-control" rows="3" maxlength="200" required></textarea>
 					  <label for="form18">Summarize your article in 200 characters</label>
-          
-            @if($errors->has('summary'))
-            <div class="alert alert-danger">
-                {{ $errors->first('summary') }}
-            </div>
-            @endif  
-            </div>
-				  	<div id="textarea_feedback"></div>
+					
+					</div>
+					<div id="textarea_feedback"></div>
             </div>
 
           </div>
@@ -114,15 +104,12 @@
 
          	<select class="js-example-basic-multiple w-100" name="tags[]" multiple="multiple" required>
                @foreach($tags as $item)
-              <option value="{{$item->name}}" {{ (collect(old('tags'))->contains($item->name)) ? 'selected':'' }}>{{$item->name}}</option>
+              <option value="{{$item->name}}">{{$item->name}}</option>
               @endforeach
-			  	</select>
-              @if($errors->has('tags'))
-                    <div class="alert alert-danger">
-                        {{ $errors->first('tags') }}
-                    </div>
-              @endif  
-          </div>
+			
+
+				</select>
+            </div>
 
           </div>
           <!--/.Card-->
@@ -152,12 +139,7 @@
 				    <div class="file-path-wrapper">
 				      <input class="file-path validate" type="text" placeholder="Upload your file">
 				    </div>
-            </div> 	
-            @if($errors->has('page_image'))
-            <div class="alert alert-danger">
-                {{ $errors->first('page_image') }}
-            </div>
-            @endif  
+  					</div> 	
                 </div>
             </div>
           <!--/.Card-->
@@ -168,23 +150,31 @@
 
           <!--Card-->
               <div class="card mb-4">
-                <!-- Card header -->
-                <div class="card-header text-center">
-                  Status
-                </div>
-                <!--Card content-->
-                <div class="card-body">
+
+            <!-- Card header -->
+            <div class="card-header text-center">
+              Status
+            </div>
+
+            <!--Card content-->
+            <div class="card-body">
                 
-                  <select class="mdb-select md-form" name="status">
-                      <option value="" disabled selected>Choose your option</option>
-                      @foreach($status as $key => $value)
-                        <option value="{{$key}}" {{ (collect(old('status'))->contains($key)) ? 'selected':'' }}>{{$value}}</option>
-                      @endforeach
-                </select>
+          <select class="mdb-select md-form" name="status">
+          <option value="" disabled selected>Choose your option</option>
+          @foreach($status as $key => $value)
+
+
+              <option value="{{$key}}">{{$value}}</option>
+          @endforeach
+      
+        </select>
                 </div>
             </div>
           <!--/.Card-->
+
         </div>
+
+
       </div>
       <!--Grid row-->
       <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
