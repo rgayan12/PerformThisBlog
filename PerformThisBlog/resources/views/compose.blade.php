@@ -8,7 +8,7 @@
         @method('PATCH')
 
     @else   
-      <form method="POST" action="{{ route('article.create') }}" enctype="multipart/form-data">
+      <form method="POST" action="{{ route('article.store') }}" enctype="multipart/form-data">
 
     @endif 
 
@@ -112,16 +112,14 @@
             <!--Card content-->
             <div class="card-body">
 
-         	<select class="js-example-basic-multiple w-100" name="tags[]" multiple="multiple" required>
-               @foreach($tags as $item)
-              <option value="{{$item->name}}" {{ (collect(old('tags'))->contains($item->name)) ? 'selected':'' }}>{{$item->name}}</option>
-              @endforeach
-			  	</select>
+              {!! Form::label('tags', 'Tags'.'', ['class' => 'control-label']) !!}
+              {!! Form::select('tags[]', $tags, old('tags'), ['class' => 'js-example-basic-multiple w-100', 'multiple' => 'multiple','required']) !!}
+              <p class="help-block"></p>
               @if($errors->has('tags'))
-                    <div class="alert alert-danger">
-                        {{ $errors->first('tags') }}
-                    </div>
-              @endif  
+                  <p class="help-block">
+                      {{ $errors->first('tags') }}
+                  </p>
+              @endif
           </div>
 
           </div>
@@ -150,7 +148,11 @@
 				     <input type="file" name="page_image">
 				    </div>
 				    <div class="file-path-wrapper">
-				      <input class="file-path validate" type="text" placeholder="Upload your file">
+              <input class="file-path validate" type="text" placeholder="Upload your file">
+              <input type="hidden" name="page_image_max_size" value="5" />
+              <input type="hidden" name="page_image_max_width" value="4096" />
+              <input type="hidden" name="page_image_max_height" value="4096" />
+
 				    </div>
             </div> 	
             @if($errors->has('page_image'))

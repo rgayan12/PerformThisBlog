@@ -25,15 +25,15 @@ class Article extends Model
         'last_user_id',
     ];
 
-    public function categories()
+  /*  public function categories()
     {
         return $this->belongsToMany(Category::class, 'article_category');
         //return $this->belongsToMany(Category::class, 'audition_category')->withTrashed();
     }
-
+*/
     public function tags()
     {
-        return $this->belongsToMany(\App\Models\Tag::class, 'article_tag');
+        return $this->belongsToMany(\App\Tag::class, 'article_tag');
         //return $this->belongsToMany(Category::class, 'audition_category')->withTrashed();
     }
 
@@ -44,7 +44,7 @@ class Article extends Model
     }
 
     public function likes(){
-        return $this->hasMany(\App\Models\ArticleLike::class);
+        return $this->hasMany(\App\ArticleLike::class);
     }
 
     public function totalLikesByIp(){
@@ -52,7 +52,7 @@ class Article extends Model
     }
 
     public function comments(){
-        return $this->hasMany(\App\Models\ArticleComment::class);
+        return $this->hasMany(\App\ArticleComment::class);
     }
 
     
