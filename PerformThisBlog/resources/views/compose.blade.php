@@ -111,8 +111,6 @@
 
             <!--Card content-->
             <div class="card-body">
-
-              {!! Form::label('tags', 'Tags'.'', ['class' => 'control-label']) !!}
               {!! Form::select('tags[]', $tags, old('tags'), ['class' => 'js-example-basic-multiple w-100', 'multiple' => 'multiple','required']) !!}
               <p class="help-block"></p>
               @if($errors->has('tags'))
@@ -120,7 +118,7 @@
                       {{ $errors->first('tags') }}
                   </p>
               @endif
-          </div>
+            </div>
 
           </div>
           <!--/.Card-->

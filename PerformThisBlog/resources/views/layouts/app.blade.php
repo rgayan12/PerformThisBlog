@@ -14,17 +14,18 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('mdbpro/css/mdb.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.tiny.cloud/1/52qh72w8mno3y2eykpa3tz58qqcywnk0d3a6szo0wg8gcmc6/tinymce/5/tinymce.min.js"></script>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+   
 </head>
-<body class="grey lighten-3">
+<body>
  
-            @include('layouts.navbar')
+        @include('layouts.navbar')
            
          <main class="pt-5 mx-lg-5">
             @yield('content')

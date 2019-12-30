@@ -4,13 +4,13 @@
 <div class="container-fluid mt-5">
  <div class="row">   
 @foreach ($myarticles as $article)
-<div class="col-md-4">  
+<div class="col-md-4 mt-2">  
 <!-- Card Regular -->
 <div class="card card-cascade">
 
         <!-- Card image -->
         <div class="view view-cascade overlay">
-          <img class="card-img-top" src="{{ env('AWS_URL') . $article->page_image }}" alt="Card image cap">
+          <img class="card-img-top" src="{{ env('AWS_URL') .'thumbnails/thumbnail'.$article->page_image }}" alt="Card image cap">
           
           <a>
             <div class="mask rgba-white-slight"></div>

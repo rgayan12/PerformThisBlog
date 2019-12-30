@@ -1,7 +1,7 @@
     $(document).ready(function() {
           $('.mdb-select').materialSelect();
           $('.js-example-basic-multiple').select2({
-             tags: true,
+            tags: true,
             tokenSeparators: [',', ' ']
           });
           });
@@ -55,4 +55,11 @@ $(document).ready(function() {
 
         $('#textarea_feedback').html(text_remaining + ' characters remaining');
     });
+});
+
+$(document).ready(() => {
+  // SideNav Initialization
+  $(".button-collapse").sideNav();
+
+  new WOW().init();
 });

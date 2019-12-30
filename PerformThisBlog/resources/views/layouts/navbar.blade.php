@@ -1,21 +1,16 @@
       <header>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
-            <div class="container-fluid">
-                <a class="navbar-brand waves-effect" href="{{ url('/') }}">
-                    <strong class="blue-text">{{ config('app.name', 'Laravel') }}</strong>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+         @include('layouts.sidebar')
+        <!-- Navbar -->
+      <nav class="navbar navbar-toggleable-md navbar-expand-lg white text-black">
+        <!-- SideNav slide-out button -->
+        <div class="float-left">
+          <a href="#" data-activates="slide-out" class="button-collapse black-text"><i class="fas fa-bars"></i></a>
+        </div>
+        <!-- Breadcrumb-->
+        <div class="breadcrumb-dn mr-auto">
+         
+        </div>
+            <ul class="nav navbar-nav nav-flex-icons ml-auto">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -46,9 +41,9 @@
                             </li>
                         @endguest
                     </ul>
-                </div>
-            </div>
-        </nav>
-
-        @include('layouts.sidebar')
+      </nav>
+      <!-- /.Navbar -->
+       
 </header>
+
+

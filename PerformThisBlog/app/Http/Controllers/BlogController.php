@@ -69,29 +69,56 @@ class BlogController extends Controller
             'page_image.max' => 'Allowed max size is 2MB',
             'content.required' => 'This is a required field'
         ]); 
+
+
  
          if($request->hasFile('page_image')){
+
             $file = $request->file('page_image');
-            $path = $request->file('page_image')->storeAs('blog-images/thumbnails/', $file->getClientOriginalName(), 's3');
+
+            $date = date('Y-m-d H:i:s', time());
+
+            $nfileName = $date.$file->getClientOriginalName(); 
+            
+            $thumbImage = Image::make($request->file('page_image'))->resize(300, null, function($constraint){
+                $constraint->aspectRatio();
+            });
+
+            Storage::disk('s3')->put('blog-images/thumbnails/'.'thumbnail'.$nfileName,
+                $thumbImage->stream(), 'public');
+
+            Storage::disk('s3')->put('blog-images/'.$nfileName, file_get_contents($request->file('page_image')), 'public');
+
+            //  $request->file('page_image')->storeAs('blog-images/', $nfileName, 's3','public');
+                
+
+
+//            $file = $request->file('page_image');
+
+  //          $path = $request->file('page_image')->storeAs('blog-images/thumbnails/', $file->getClientOriginalName(), 's3');
          }
 
          $base_url = "http://performthis.com";
 
          $slug = new Slug();   
          $article = Article::create($request->all());
-         $article->page_image = $path;
+         $article->page_image = $nfileName;
          $article->slug =  $slug->createSlug($request->title, Article::class);
          $slugs = $article->slug;
 
          $article->last_user_id = $user->id;
          $article->canonical_link = $base_url."/article/".$slugs;
          $article->meta_title = $article->title;
+         $article->meta_description = $article->summary;
          $article->save();
  
-         $this->handleTags($request, $article);  
-         $article->tags()->sync(array_filter((array)$request->input('tags')));  
+         $TagsToSave = $this->handleTags($request, $article);  
 
-         return response()->json(['article' => $article, 'message' => 'Success'], 200);
+
+
+         $article->tags()->sync(array_filter((array)$TagsToSave));  
+
+         return redirect()->route('article.index');
         //
     }
 
@@ -114,7 +141,7 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        $tags = Tag::all();
+        $tags = Tag::tags();
         $status = array('1'=>'Published', '2'=>'Draft', '3'=>'Unpublished');
         $article = Article::findOrFail($id);
         return view ('article.edit',compact('tags','status','article'));
@@ -149,11 +176,24 @@ class BlogController extends Controller
         //Once the article is saved we deal with the Tag
         $tagNames = $request->tags;
 
-        dd($tagNames);
+        $newtags = array();
         //create all tags
         foreach ($tagNames as $value) {
-           Tag::firstOrCreate(['name' => $value]);
+            
+         if(!is_numeric($value))
+            {
+                    
+                $tt = Tag::firstOrCreate(['name' => $value]);
+                $newtags[] = $tt->id;    
+                
+            }
+         else{
+            $newtags[] = $value;
+         }
+
         }
+
+        return $newtags;
 
     }
 
