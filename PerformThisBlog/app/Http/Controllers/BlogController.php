@@ -157,6 +157,14 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $article = Article::findOrFail($id);
+        $article->update($request->all());
+
+        $TagsToSave = $this->handleTags($request, $article);  
+        $article->tags()->sync(array_filter((array)$TagsToSave));  
+
+        return redirect()->route('article.index');
+
         //
     }
 

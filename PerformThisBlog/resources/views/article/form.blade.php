@@ -74,7 +74,7 @@
               
                           <!--Card content-->
                           <div class="card-body">
-                                {!! Form::label('tags', 'Tags'.'', ['class' => 'control-label']) !!}
+                              
                                 {!! Form::select('tags[]', $tags, old('tags'), ['class' => 'js-example-basic-multiple w-100', 'multiple' => 'multiple','required']) !!}
                                 <p class="help-block"></p>
                                 @if($errors->has('tags'))
@@ -135,8 +135,7 @@
                     
                                 <!--Card content-->
                                 <div class="card-body">
-                                        {!! Form::label('status', 'status'.'', ['class' => 'control-label']) !!}
-                                        {!! Form::select('status', $status, old('status'), ['class' => 'mdb-select md-form"','required']) !!}
+                                 {!! Form::select('status', $status, old('status'), ['class' => 'mdb-select md-form"','required']) !!}
                                         @if($errors->has('status'))
                                             <p class="help-block">
                                                 {{ $errors->first('status') }}
