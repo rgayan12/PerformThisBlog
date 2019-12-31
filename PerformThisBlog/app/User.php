@@ -40,4 +40,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function identities() {
        return $this->hasMany('App\SocialIdentity');
     }
+
+    public function blogger(){
+        return $this->hasOne('App\BloggerProfile');
+    }
 }

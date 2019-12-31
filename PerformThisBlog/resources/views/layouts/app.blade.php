@@ -24,13 +24,8 @@
    
 </head>
 <body>
- 
-        @include('layouts.navbar')
-           
-         <main class="pt-5 mx-lg-5">
-            @yield('content')
-         </main>
-    
+        @yield('content')
+       
        
         @include('layouts.javascript')
 </body>

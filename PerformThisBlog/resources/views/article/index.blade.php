@@ -1,10 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+         @include('layouts.navbar')
+
+         <!--Main layout-->
+
+         <main class="pt-5 mx-lg-5">
+
 <div class="container-fluid mt-5">
  <div class="row">   
 @foreach ($myarticles as $article)
-<div class="col-md-4 mt-2">  
+
+<div class="col-md-3 mt-2">  
 <!-- Card Regular -->
 <div class="card card-cascade">
 
@@ -42,5 +49,6 @@
 @endforeach
 </div>
 </div>
+</main>
 @endsection
 

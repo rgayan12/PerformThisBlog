@@ -1,21 +1,7 @@
-<!DOCTYPE html>
-<html lang="en" class="">
+@extends('layouts.app')
 
-<head>
-  <!-- Required meta tags always come first -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Material Design Bootstrap Template</title>
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-  <!-- Bootstrap core CSS -->
-  <link href="../css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-  <link href="../css/mdb.min.css" rel="stylesheet">
-
-  <style>
+@section('content')
+<style>
     html,
     body,
     header,
@@ -53,16 +39,7 @@
     }
 
   </style>
-
-</head>
-
-<body>
-
-  <!--Main Navigation-->
-  <header>
-
-
-
+ <header>
     <!-- Intro Section -->
     <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient3.png); background-repeat: no-repeat; background-size: cover; background-position: center center;">
       <div class="mask rgba-indigo-slight">
@@ -73,20 +50,15 @@
                 <h1 class="display-3 blue-text mb-5 wow fadeInDown" data-wow-delay="0.3s">ABOUT
                   <a class="blue-text font-weight-bold">ME</a>
                 </h1>
-                <h5 class="text-uppercase blue-text mb-5 mt-1 font-weight-bold wow fadeInDown" data-wow-delay="0.3s">Lorem
-                  ipsum dolor sit amet</h5>
+                <h5 class="text-uppercase blue-text mb-5 mt-1 font-weight-bold wow fadeInDown" data-wow-delay="0.3s">Connect with Me</h5>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-  </header>
-  <!--Main Navigation-->
-
-  <!--Main Layout-->
-  <main>
+</header>
+<main class="p-0">
 
     <div class="container">
 
@@ -538,24 +510,5 @@
   </footer>
   <!--/Footer-->
 
-  <!--  SCRIPTS  -->
-  <!-- JQuery -->
-  <script type="text/javascript" src="../js/jquery.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="../js/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="../js/mdb.min.js"></script>
-  <script>
-    new WOW().init();
 
-    // MDB Lightbox Init
-    $(function () {
-      $("#mdb-lightbox-ui").load("../mdb-addons/mdb-lightbox-ui.html");
-    });
-
-  </script>
-</body>
-
-</html>
+@endsection

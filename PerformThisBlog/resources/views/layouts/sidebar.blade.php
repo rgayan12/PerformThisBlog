@@ -18,73 +18,45 @@
             </ul>
           </li>
           <!--/Social-->
-          <!--Search Form-->
-          <li>
-            <form class="search-form" role="search">
-              <div class="form-group md-form mt-0 pt-1 waves-light">
-                <input type="text" class="form-control" placeholder="Search">
-              </div>
-            </form>
-          </li>
-          <!--/.Search Form-->
-          <!-- Side navigation links -->
-          <li>
+        
+
+           
+
+
             <ul class="collapsible collapsible-accordion">
-              <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-chevron-right"></i> Submit blog<i
+               <li><a class="text-white" href="{{route('article.create')}}">
+              <i class="fas fa-chevron-right"></i> Compose </a>
+            </li>
+
+             <li><a class="text-white" href="{{route('article.index')}}">
+              <i class="fas fa-chevron-right"></i> My Articles </a>
+            </li>
+                <li>
+              @if($user->blogger)
+               <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-chevron-right"></i> Profile<i
                     class="fas fa-angle-down rotate-icon"></i></a>
                 <div class="collapsible-body">
                   <ul class="list-unstyled">
-                    <li><a href="{{route('article.create')}}"><i class="fas fa-user mr-3"></i>Compose</a>
+                    <li><a href="{{route('profile.edit', $user->blogger->id) }}"><i class="fas fa-user mr-3"></i>Edit</a>
                     </li>
-                    <li><a href="{{route('article.index')}}"><i class="fas fa-table mr-3"></i>My Articles</a>
+                    <li><a href="{{route('profile.show', $user->blogger->id) }}"><i class="fas fa-table mr-3"></i>View</a>
                     </li>
 
                   </ul>
                 </div>
               </li>
-              <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-hand-pointer"></i> Instruction<i
-                    class="fas fa-angle-down rotate-icon"></i></a>
-                <div class="collapsible-body">
-                  <ul class="list-unstyled">
-                    <li><a href="#" class="waves-effect">For bloggers</a>
-                    </li>
-                    <li><a href="#" class="waves-effect">For authors</a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-eye"></i> About<i class="fas fa-angle-down rotate-icon"></i></a>
-                <div class="collapsible-body">
-                  <ul class="list-unstyled">
-                    <li><a href="#" class="waves-effect">Introduction</a>
-                    </li>
-                    <li><a href="#" class="waves-effect">Monthly meetings</a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li><a class="collapsible-header waves-effect arrow-r"><i class="far fa-envelope"></i> Contact me<i class="fas fa-angle-down rotate-icon"></i></a>
-                <div class="collapsible-body">
-                  <ul class="list-unstyled">
-                    <li><a href="#" class="waves-effect">FAQ</a>
-                    </li>
-                    <li><a href="#" class="waves-effect">Write a message</a>
-                    </li>
-                    <li><a href="#" class="waves-effect">FAQ</a>
-                    </li>
-                    <li><a href="#" class="waves-effect">Write a message</a>
-                    </li>
-                    <li><a href="#" class="waves-effect">FAQ</a>
-                    </li>
-                    <li><a href="#" class="waves-effect">Write a message</a>
-                    </li>
-                    <li><a href="#" class="waves-effect">FAQ</a>
-                    </li>
-                    <li><a href="#" class="waves-effect">Write a message</a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
+             
+              @else
+              <li>
+              <a class="text-white" href="{{route('profile.create') }}">
+             
+              <i class="fas fa-chevron-right"></i> Profile </a>
+            </li>
+             @endif
+
+
+             
+
             </ul>
           </li>
           <!--/. Side navigation links -->

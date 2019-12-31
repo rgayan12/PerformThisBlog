@@ -25,6 +25,7 @@ Route::get('/', 'HomeController@index');
 Route::get('profile', 'HomeController@profile')->name('profile')->middleware('verified');
 
 Route::resource('article', 'BlogController');
+Route::resource('profile', 'BloggerProfileController');
 
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback','Auth\LoginController@handleProviderCallback');

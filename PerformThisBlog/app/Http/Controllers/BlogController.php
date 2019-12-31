@@ -30,9 +30,11 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $userID = auth()->user()->id;
+        $user = \Auth::User();
+
+        $userID = $user->id;
         $myarticles = Article::where('user_id', $userID)->get();
-        return view('myarticles', compact('myarticles'));
+        return view('article.index', compact('myarticles','user'));
         //
     }
 
@@ -43,10 +45,15 @@ class BlogController extends Controller
      */
     public function create()
     {
+        $user = \Auth::User();
+
         $tags = Tag::tags();
         $status = array('1'=>'Published', '2'=>'Draft', '3'=>'Unpublished');
         $article = new Article;
-        return view ('compose',compact('tags','status','article'));
+
+         
+        
+        return view ('article.create',compact('tags','status','article','user'));
         //
     }
 
@@ -70,40 +77,16 @@ class BlogController extends Controller
             'content.required' => 'This is a required field'
         ]); 
 
-
- 
          if($request->hasFile('page_image')){
-
-            $file = $request->file('page_image');
-
-            $date = date('Y-m-d H:i:s', time());
-
-            $nfileName = $date.$file->getClientOriginalName(); 
-            
-            $thumbImage = Image::make($request->file('page_image'))->resize(300, null, function($constraint){
-                $constraint->aspectRatio();
-            });
-
-            Storage::disk('s3')->put('blog-images/thumbnails/'.'thumbnail'.$nfileName,
-                $thumbImage->stream(), 'public');
-
-            Storage::disk('s3')->put('blog-images/'.$nfileName, file_get_contents($request->file('page_image')), 'public');
-
-            //  $request->file('page_image')->storeAs('blog-images/', $nfileName, 's3','public');
-                
-
-
-//            $file = $request->file('page_image');
-
-  //          $path = $request->file('page_image')->storeAs('blog-images/thumbnails/', $file->getClientOriginalName(), 's3');
+              $image_name = $this->processImages($request);
          }
 
          $base_url = "http://performthis.com";
 
          $slug = new Slug();   
          $article = Article::create($request->all());
-         $article->page_image = $nfileName;
          $article->slug =  $slug->createSlug($request->title, Article::class);
+         $article->page_image = $image_name;
          $slugs = $article->slug;
 
          $article->last_user_id = $user->id;
@@ -113,8 +96,6 @@ class BlogController extends Controller
          $article->save();
  
          $TagsToSave = $this->handleTags($request, $article);  
-
-
 
          $article->tags()->sync(array_filter((array)$TagsToSave));  
 
@@ -141,10 +122,14 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
+
+        $user = \Auth::User();
+
         $tags = Tag::tags();
         $status = array('1'=>'Published', '2'=>'Draft', '3'=>'Unpublished');
         $article = Article::findOrFail($id);
-        return view ('article.edit',compact('tags','status','article'));
+        return view ('article.edit',compact('tags','status','article','user'));
+   
         //
     }
 
@@ -162,6 +147,13 @@ class BlogController extends Controller
 
         $TagsToSave = $this->handleTags($request, $article);  
         $article->tags()->sync(array_filter((array)$TagsToSave));  
+
+        if($request->hasFile('page_image')){
+            $image_name = $this->processImages($request);
+        }
+
+        $article->page_image = $image_name;
+        $article->save();
 
         return redirect()->route('article.index');
 
@@ -190,19 +182,41 @@ class BlogController extends Controller
             
          if(!is_numeric($value))
             {
-                    
                 $tt = Tag::firstOrCreate(['name' => $value]);
                 $newtags[] = $tt->id;    
-                
             }
          else{
-            $newtags[] = $value;
+                $newtags[] = $value;
          }
 
         }
-
         return $newtags;
-
     }
 
+
+    public function processImages(Request $request){
+
+            $file = $request->file('page_image');
+            $date = date('Y-m-d H:i:s', time());
+            $nfileName = $date.$file->getClientOriginalName(); 
+            $thumbImage = Image::make($request->file('page_image'))->resize(300, null, function($constraint){
+                $constraint->aspectRatio();
+            });
+
+            //Store the Thumbnail
+            Storage::disk('s3')->put('blog-images/thumbnails/'.'thumbnail'.$nfileName,
+                $thumbImage->stream(), 'public');
+
+            //Store the actual Version
+            Storage::disk('s3')->put('blog-images/'.$nfileName, file_get_contents($request->file('page_image')), 'public');
+            //  $request->file('page_image')->storeAs('blog-images/', $nfileName, 's3','public');
+                
+
+
+//            $file = $request->file('page_image');
+
+  //          $path = $request->file('page_image')->storeAs('blog-images/thumbnails/', $file->getClientOriginalName(), 's3');
+        return $nfileName;
+
+    }
 }
