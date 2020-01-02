@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+              <h5 class="card-header primary-color white-text text-center py-4">
+                <strong>Verify Your Email Address</strong>
+              </h5>
 
                 <div class="card-body">
                     @if (session('resent'))

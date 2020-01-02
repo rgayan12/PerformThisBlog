@@ -18,7 +18,7 @@
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link waves-effect" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="btn btn-primary btn-rounded btn-sm" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -52,8 +52,11 @@
 <div class="container-fluid mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
+
             <div class="card"> 
-                <div class="card-header">{{ __('Login') }}</div>
+                <h5 class="card-header primary-color white-text text-center py-4">
+                <strong>Sign in</strong>
+              </h5>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">

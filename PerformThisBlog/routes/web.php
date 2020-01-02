@@ -21,11 +21,11 @@ use App\Http\Controllers\BlogController;
 Auth::routes();
 Auth::routes(['verify' => true]);
 
-Route::get('/', 'HomeController@index');
-Route::get('profile', 'HomeController@profile')->name('profile')->middleware('verified');
+Route::get('/', 'BlogController@index');
+//Route::get('profile', 'HomeController@profile')->name('profile')->middleware('verified');
 
-Route::resource('article', 'BlogController');
-Route::resource('profile', 'BloggerProfileController');
+Route::resource('article', 'BlogController')->middleware('verified');
+Route::resource('profile', 'BloggerProfileController')->middleware('verified');
 
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback','Auth\LoginController@handleProviderCallback');
