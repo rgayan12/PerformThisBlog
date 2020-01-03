@@ -42,7 +42,7 @@
           <div class="row wow fadeIn">
 
                 <!--Grid column-->
-                <div class="col-md-12 mb-4">
+                <div class="col-md-8 mb-4">
         
                   <!--Card-->
                   <div class="card">
@@ -60,11 +60,13 @@
                 </div>
             </div>
         </div>
-    </div>
-         <!--Grid row-->
-         <div class="row wow fadeIn">
+ 
                 <!--Grid column-->
                 <div class="col-md-4 mb-4">
+
+                  <div class="row">
+
+                    <div class="col-md-12">
                   <!--Card-->
                   <div class="card">
                     <!--Card content-->
@@ -99,11 +101,10 @@
                     <!--/.Card-->
           
                  
-
-                  <div class="col-md-3 mb-4">
-
+                <div class="col-md-12 mt-4">
+    
                         <!--Card-->
-                            <div class="card mb-4 card-cascade narrower">
+                            <div class="card mb-4 card-cascade narrower mt-4">
               
                           <!-- Card header -->
                          <div class="view view-cascade gradient-card-header blue-gradient">
@@ -129,7 +130,7 @@
                       <!--Grid column-->
               
                               <!--Grid column-->
-                      <div class="col-md-3 mb-4">
+                        <div class="col-md-12">
               
                         <!--Card-->
                             <div class="card mb-4">
@@ -170,7 +171,8 @@
                           <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                
                         </div>
-                
+                </div>
+
       
       {!! Form::submit(trans('Update'), ['class' => 'btn btn-warning']) !!}
       {!! Form::close() !!}

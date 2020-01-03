@@ -9,6 +9,7 @@
 
 <div class="container-fluid mt-5">
  <div class="row">   
+@if(count($myarticles) > 0 )   
 @foreach ($myarticles as $article)
 
 <div class="col-md-3 mt-2">  
@@ -17,8 +18,9 @@
 
         <!-- Card image -->
         <div class="view view-cascade overlay">
+          @if($article->page_image)   
           <img class="card-img-top" src="{{ env('AWS_URL') .'thumbnails/thumbnail'.$article->page_image }}" alt="Card image cap">
-          
+          @endif
           <a>
             <div class="mask rgba-white-slight"></div>
           </a>
@@ -36,7 +38,7 @@
           </p>
       
           <!-- Twitter -->
-        <a type="button" class="btn-floating btn-small btn-tw"><i class="fab fa-twitter"></i></a>
+          <a type="button" class="btn-floating btn-small btn-tw" href="{{ env('BLOG_VIEW_URI') .'/'. $article->slug }}"><i class="fas fa-eye"></i></a>
           <!-- Google + -->
           <a type="button" class="btn-floating btn-small btn-dribbble" href="{{ route('article.edit', $article->id )}}"><i class="fas fa-pencil-alt"></i></a>
       
@@ -47,6 +49,9 @@
     
         </div>
 @endforeach
+@else
+<h2>You Have not Created any articles <a href="{{route('article.create') }} "> Click Here </a> to create your first article</h2>
+@endif
 </div>
 </div>
 </main>

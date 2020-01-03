@@ -3,27 +3,15 @@
         <ul class="custom-scrollbar">
           <!-- Logo -->
           <li>
-            <div class="logo-wrapper waves-light">
-              <a href="#"><img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" class="img-fluid flex-center"></a>
+            <div class="logo-wrapper waves-light bg-white">
+              <a href="#"><img src="{{asset('images/logo-small.png')}}" class="img-fluid flex-center"></a>
             </div>
           </li>
           <!--/. Logo -->
-          <!--Social-->
-          <li>
-            <ul class="social">
-              <li><a href="#" class="icons-sm fb-ic"><i class="fab fa-facebook-f"> </i></a></li>
-              <li><a href="#" class="icons-sm pin-ic"><i class="fab fa-pinterest"> </i></a></li>
-              <li><a href="#" class="icons-sm gplus-ic"><i class="fab fa-google-plus-g"> </i></a></li>
-              <li><a href="#" class="icons-sm tw-ic"><i class="fab fa-twitter"> </i></a></li>
-            </ul>
-          </li>
-          <!--/Social-->
-        
-
            
+          
 
-
-            <ul class="collapsible collapsible-accordion">
+            <ul class="collapsible collapsible-accordion mt-5">
                <li><a class="text-white" href="{{route('article.create')}}">
               <i class="fas fa-chevron-right"></i> Compose </a>
             </li>
@@ -39,7 +27,7 @@
                   <ul class="list-unstyled">
                     <li><a href="{{route('profile.edit', $user->blogger->id) }}"><i class="fas fa-user mr-3"></i>Edit</a>
                     </li>
-                    <li><a href="{{route('profile.show', $user->blogger->id) }}"><i class="fas fa-table mr-3"></i>View</a>
+                    <li><a href="{{route('profile.show', $user->blogger->slug) }}"><i class="fas fa-table mr-3"></i>View</a>
                     </li>
 
                   </ul>

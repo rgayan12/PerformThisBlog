@@ -48,7 +48,13 @@ class BlogController extends Controller
         $user = \Auth::User();
 
         $tags = Tag::tags();
+
         $status = array('1'=>'Published', '2'=>'Draft', '3'=>'Unpublished');
+        
+        if($user->role_id == 7){
+           $status['4'] = 'Published by Moderator';
+        }
+
         $article = new Article;
 
          
@@ -80,12 +86,16 @@ class BlogController extends Controller
          if($request->hasFile('page_image')){
               $image_name = $this->processImages($request);
          }
+         else{
+             $image_name = null;
+         }
 
          $base_url = "http://performthis.com";
 
          $slug = new Slug();   
          $article = Article::create($request->all());
          $article->slug =  $slug->createSlug($request->title, Article::class);
+
          $article->page_image = $image_name;
          $slugs = $article->slug;
 
@@ -127,6 +137,10 @@ class BlogController extends Controller
 
         $tags = Tag::tags();
         $status = array('1'=>'Published', '2'=>'Draft', '3'=>'Unpublished');
+        if($user->role_id == 7){
+           $status['4'] = 'Published by Moderator';
+        }
+
         $article = Article::findOrFail($id);
         return view ('article.edit',compact('tags','status','article','user'));
    
@@ -150,10 +164,11 @@ class BlogController extends Controller
 
         if($request->hasFile('page_image')){
             $image_name = $this->processImages($request);
+            $article->page_image = $image_name;
+            $article->save();
         }
 
-        $article->page_image = $image_name;
-        $article->save();
+       
 
         return redirect()->route('article.index');
 

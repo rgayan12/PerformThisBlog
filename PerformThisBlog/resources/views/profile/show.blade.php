@@ -60,7 +60,7 @@
 </header>
 <main class="p-0">
 
-    <div class="container">
+    <div class="container-fluid">
 
       <!--Section: Team v.1-->
       <section class="text-center team-section">
@@ -76,30 +76,23 @@
                 alt="First sample avatar image">
             </div>
             <h3 class="my-3 font-weight-bold">
-              <strong>Anna Deynah</strong>
+              <strong>{{ $profile->first_name .' '. $profile->last_name }}</strong>
             </h3>
-            <h6 class="font-weight-bold teal-text mb-4">Web Designer</h6>
+            <h6 class="font-weight-bold teal-text mb-4">Writer @ Daily Mail</h6>
 
             <!--Facebook-->
-            <a class="p-2 m-2 fa-lg fb-ic">
-              <i class="fab fa-facebook-f grey-text"> </i>
+            <a class="p-2 m-2 fa-lg fb-ic" href="https://linkedin.com/{{ $profile->linkedin }}">
+              <i class="fab fa-linkedin grey-text"> </i>
             </a>
             <!--Twitter-->
-            <a class="p-2 m-2 fa-lg tw-ic">
+            <a class="p-2 m-2 fa-lg tw-ic" href="https://linkedin.com/{{ $profile->twitter }}">
               <i class="fab fa-twitter grey-text"> </i>
             </a>
-            <!--Instagram-->
-            <a class="p-2 m-2 fa-lg ins-ic">
-              <i class="fab fa-instagram grey-text"> </i>
-            </a>
-
-            <p class="mt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-              ut labore et dolore
-              magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-              commodo
-              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-              pariatur.
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.</p>
+          
+            @if($user->id == $profile->user->id)
+            <a href="{{route('article.index')}}">Go Back </a>
+            @endif
+            <p class="mt-5">{!! $profile->summary !!}</p>
 
           </div>
           <!--Grid column-->
@@ -115,8 +108,8 @@
 
         <ul class="nav md-pills pills-default d-flex justify-content-center">
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#panel11" role="tab">
-              <strong>Work</strong>
+            <a class="nav-link active" data-toggle="tab" href="#panel11" role="tab" aria-selected="true">
+              <strong>My Articles</strong>
             </a>
           </li>
           <li class="nav-item">
@@ -149,16 +142,16 @@
 
                   <!--Grid row-->
                   <div class="row mb-4">
-
+                    @foreach($myarticles as $article)
                     <!--Grid column-->
-                    <div class="col-md-6 mb-4">
-                      <div class="card card-image" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/Work/6-col/img%20(41).jpg');">
+                    <div class="col-md-4 mb-4">
+                      <div class="card card-image" style="background-image: url('{{ env('AWS_URL') .'thumbnails/thumbnail'.$article->page_image }}');">
 
                         <!-- Content -->
                         <div class="text-white text-center d-flex align-items-center rgba-blue-strong py-5 px-4">
                           <div>
                             <h3 class="mb-4 mt-4 font-weight-bold">
-                              <strong>Project title</strong>
+                              <strong>{{ $article->title }}</strong>
                             </h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam,
                               voluptatem,
@@ -166,91 +159,15 @@
                               dignissimos.
                               Odit sed qui, dolorum!.</p>
                             <a class="btn btn-outline-white btn-sm">
-                              <i class="fas fa-clone left"></i> View project</a>
+                              <i class="fas fa-clone left"></i> Read article</a>
                           </div>
                         </div>
                       </div>
                     </div>
                     <!--Grid column-->
-
-                    <!--Grid column-->
-                    <div class="col-md-6 mb-4">
-                      <div class="card card-image" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/Work/6-col/img%20(14).jpg');">
-
-                        <!-- Content -->
-                        <div class="text-white text-center d-flex align-items-center rgba-teal-strong py-5 px-4">
-                          <div>
-                            <h3 class="mb-4 mt-4 font-weight-bold">
-                              <strong>Project title</strong>
-                            </h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam,
-                              voluptatem,
-                              optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum
-                              dignissimos.
-                              Odit sed qui, dolorum!.</p>
-                            <a class="btn btn-outline-white btn-sm">
-                              <i class="fas fa-clone left"></i> View project</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!--Grid column-->
-
+                    @endforeach
                   </div>
                   <!--Grid row-->
-
-                  <!--Grid row-->
-                  <div class="row">
-
-                    <!--Grid column-->
-                    <div class="col-md-6 mb-4">
-                      <div class="card card-image" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/Work/6-col/img%20(11).jpg');">
-
-                        <!-- Content -->
-                        <div class="text-white text-center d-flex align-items-center rgba-green-strong py-5 px-4">
-                          <div>
-                            <h3 class="mb-4 mt-4 font-weight-bold">
-                              <strong>Project title</strong>
-                            </h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam,
-                              voluptatem,
-                              optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum
-                              dignissimos.
-                              Odit sed qui, dolorum!.</p>
-                            <a class="btn btn-outline-white btn-sm">
-                              <i class="fas fa-clone left"></i> View project</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!--Grid column-->
-
-                    <!--Grid column-->
-                    <div class="col-md-6 mb-4">
-                      <div class="card card-image" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/Work/6-col/img%20(42).jpg');">
-
-                        <!-- Content -->
-                        <div class="text-white text-center d-flex align-items-center rgba-stylish-strong py-5 px-4">
-                          <div>
-                            <h3 class="mb-4 mt-4 font-weight-bold">
-                              <strong>Project title</strong>
-                            </h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam,
-                              voluptatem,
-                              optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum
-                              dignissimos.
-                              Odit sed qui, dolorum!.</p>
-                            <a class="btn btn-outline-white btn-sm">
-                              <i class="fas fa-clone left"></i> View project</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!--Grid column-->
-
-                  </div>
-                  <!--Grid row-->
-
                 </section>
                 <!--Projects section v.4-->
 

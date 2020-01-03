@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\BloggerProfile;
+use App\Article;
 use App\Tag;
 
 class BloggerProfileController extends Controller
@@ -15,6 +16,17 @@ class BloggerProfileController extends Controller
      */
     public function index()
     {
+        $user  = \Auth::user();
+
+        if($user->blogger) {
+
+            return redirect()->route('profile.edit', $user->blogger->id);
+        }
+        else{
+
+            return redirect()->route('profile.create');
+        }
+
         //
     }
 
@@ -63,9 +75,13 @@ class BloggerProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        return view('profile.show');
+        $user  = \Auth::user();
+
+        $profile = BloggerProfile::where('slug',$slug)->get()->first();
+        $myarticles = Article::where('user_id', $user->id)->get();
+        return view('profile.show',compact('profile','myarticles','user'));
         //
     }
 
