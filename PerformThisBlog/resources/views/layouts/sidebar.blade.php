@@ -27,7 +27,7 @@
                   <ul class="list-unstyled">
                     <li><a href="{{route('profile.edit', $user->blogger->id) }}"><i class="fas fa-user mr-3"></i>Edit</a>
                     </li>
-                    <li><a href="{{route('profile.show', $user->blogger->slug) }}"><i class="fas fa-table mr-3"></i>View</a>
+                    <li><a href="{{route('profile.show', $user->blogger->slug) }}" target="_blank"><i class="fas fa-table mr-3"></i>View</a>
                     </li>
 
                   </ul>

@@ -3,7 +3,18 @@
 @section('content')
    @include('layouts.navbar')
 
+   
          <main class="pt-5 mx-lg-5">
+          @if(session()->has('success'))
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <h2>Profile Updated</h2>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          
+     @endif
+ 
   <!--Main layout-->
       {!! Form::model($profile, ['method' => 'PUT', 'route' => ['profile.update', $profile->id ], 'files' => true,] ) !!}
 
