@@ -75,7 +75,7 @@ class LoginController extends Controller
                    'email' => $providerUser->getEmail(),
                    'name'  => $providerUser->getName(),
                    'role_id' => 6,
-                   'email_verified_at' => 'CURRENT_TIMESTAMP'
+                   'email_verified_at' => date("Y-m-d H:i:s");
                ]);
            }
 
