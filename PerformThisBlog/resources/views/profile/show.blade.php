@@ -76,9 +76,9 @@
             <img class="img-fluid rounded-circle z-depth-1" src="{{ env('AWS_URL') . $profile->user_id. '/avatar/'.$profile->avatar }}" alt="Profile Image">
               
             </div>
-            <h3 class="my-3 font-weight-bold">
+            <h2 class="my-3 font-weight-bold">
               <strong>{{ $profile->first_name .' '. $profile->last_name }}</strong>
-            </h3>
+            </h2>
             <h6 class="font-weight-bold teal-text mb-4">Writer</h6>
 
             <!--Facebook-->
@@ -149,7 +149,7 @@
                               
                                 {{ str_limit(strip_tags($article->content),100) }}
                                 
-                            <a class="btn btn-outline-white btn-sm">
+                            <a class="btn btn-outline-white btn-sm" href="{{ env('BLOG_VIEW_URI'). '/'.$article->slug  }}" target="_blank">
                               <i class="fas fa-clone left"></i> Read article</a>
                           </div>
                         </div>

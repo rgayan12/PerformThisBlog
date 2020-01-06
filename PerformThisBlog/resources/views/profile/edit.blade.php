@@ -26,7 +26,7 @@
 			<div class="col-md-6">
 		      <div class="md-form mt-3 w-100">
 		        {!! Form::label('first_name', trans('First Name').'', ['class' => 'control-label']) !!}
-		        {!! Form::text('first_name', old('first_name'), ['class' => 'form-control', 'placeholder' => '','required']) !!}
+		        {!! Form::text('first_name', old('first_name'), ['class' => 'form-control', 'placeholder' => '','required','readonly'=>'true']) !!}
 		        @if($errors->has('first_name'))
 		            <p class="help-block">
 		                {{ $errors->first('first_name') }}
@@ -37,7 +37,7 @@
 			<div class="col-md-6">
 		      <div class="md-form mt-3 w-100">
 		        {!! Form::label('last_name', trans('Last Name').'', ['class' => 'control-label']) !!}
-		        {!! Form::text('last_name', old('last_name'), ['class' => 'form-control', 'placeholder' => '','required']) !!}
+		        {!! Form::text('last_name', old('last_name'), ['class' => 'form-control', 'placeholder' => '','required','readonly'=>'true']) !!}
 		        @if($errors->has('last_name'))
 		            <p class="help-block">
 		                {{ $errors->first('last_name') }}

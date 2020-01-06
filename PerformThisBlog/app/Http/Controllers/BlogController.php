@@ -102,7 +102,7 @@ class BlogController extends Controller
          $article->last_user_id = $user->id;
          $article->canonical_link = $base_url."/article/".$slugs;
          $article->meta_title = $article->title;
-         $article->meta_description = $article->summary;
+         $article->meta_description = $request->summary;
          $article->save();
  
          $TagsToSave = $this->handleTags($request, $article);  
@@ -157,7 +157,8 @@ class BlogController extends Controller
     public function update(Request $request, $id)
     {
         $article = Article::findOrFail($id);
-        $article->update($request->all());
+
+        $article->update($request->except('user_id'));  
 
         $TagsToSave = $this->handleTags($request, $article);  
         $article->tags()->sync(array_filter((array)$TagsToSave));  

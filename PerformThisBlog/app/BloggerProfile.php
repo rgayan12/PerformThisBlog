@@ -14,4 +14,11 @@ class BloggerProfile extends Model
 	  public function user(){
         return $this->belongsTo('App\User');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(\App\Tag::class, 'blogger_tags');
+        //return $this->belongsToMany(Category::class, 'audition_category')->withTrashed();
+    }
+
 }

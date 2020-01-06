@@ -63,6 +63,11 @@
   
                 <!--Grid column-->
                 <div class="col-md-4 mb-4">
+
+                   <div class="row">
+
+                    <div class="col-md-12">
+
                   <!--Card-->
                   <div class="card">
                     <!--Card content-->
@@ -98,7 +103,8 @@
           
                  
 
-                  <div class="col-md-3 mb-4">
+                <div class="col-md-12 mt-4">
+                 
 
                         <!--Card-->
                             <div class="card mb-4 card-cascade narrower">
@@ -127,7 +133,8 @@
                       <!--Grid column-->
               
                               <!--Grid column-->
-                      <div class="col-md-3 mb-4">
+                        <div class="col-md-12">
+                      
               
                         <!--Card-->
                             <div class="card mb-4">
@@ -169,8 +176,9 @@
                
                         </div>
                 
+      </div>
       
-      {!! Form::submit(trans('Update'), ['class' => 'btn btn-warning']) !!}
+      {!! Form::submit(trans('Create'), ['class' => 'btn btn-success']) !!}
       {!! Form::close() !!}
     </main>
       @endsection

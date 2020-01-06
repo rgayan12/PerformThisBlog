@@ -67,6 +67,9 @@ class BloggerProfileController extends Controller
             'twitter.required' => 'twitter is required'
         ]); 
 
+        $slug = new Slug();   
+
+
         $profile = BloggerProfile::create($request->all());
 
         if($request->hasFile('avatar')){
@@ -77,9 +80,17 @@ class BloggerProfileController extends Controller
         }
 
         $profile->avatar = $image_name;
+
+        $slugname = $request->first_name.$request->last_name; 
+        $profile->slug =  $slug->createSlug($slugname, BloggerProfile::class);
+
         $profile->save();
 
-        return redirect()->route('profile.create');
+
+        $TagsToSave = $this->handleTags($request, $profile);  
+        $profile->tags()->sync(array_filter((array)$TagsToSave));  
+
+        return redirect()->route('profile.edit',$profile->id);
         //
     }
 
@@ -144,6 +155,7 @@ class BloggerProfileController extends Controller
             $profile->save();
         }
         
+        
         $TagsToSave = $this->handleTags($request, $profile);  
         $profile->tags()->sync(array_filter((array)$TagsToSave));  
 
@@ -183,7 +195,7 @@ class BloggerProfileController extends Controller
 
         }
 
-        public function handleTags(Request $request, Article $article){
+        public function handleTags(Request $request, BloggerProfile $profile){
 
             //Once the article is saved we deal with the Tag
             $tagNames = $request->tags;
