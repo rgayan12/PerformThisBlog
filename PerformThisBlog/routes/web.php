@@ -22,6 +22,8 @@ Auth::routes();
 Auth::routes(['verify' => true]);
 
 Route::get('/', 'BlogController@index');
+Route::get('home', 'BlogController@index');
+
 //Route::get('profile', 'HomeController@profile')->name('profile')->middleware('verified');
 
 Route::resource('article', 'BlogController')->middleware('verified');
