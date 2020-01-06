@@ -21,8 +21,17 @@ class BloggerProfileController extends Controller
     public function index()
     {
         $user  = \Auth::user();
+        $tags = Tag::tags();
+        
        
-       $this->forwardUserOnCreate($user);
+         if($user->blogger) {
+
+            return redirect()->route('profile.edit', $user->blogger->id);
+        }
+          else{
+           return view('profile.create',compact('user','tags'));
+            
+      }
       
 
         //
@@ -39,9 +48,16 @@ class BloggerProfileController extends Controller
         $user  = \Auth::user();
         $tags = Tag::tags();
 
-       return $this->forwardUserOnCreate($user);
+    
+        if($user->blogger) {
+
+            return redirect()->route('profile.edit', $user->blogger->id);
+        }
+          else{
+           return view('profile.create',compact('user','tags'));
+
+      }
       
-       return view('profile.create',compact('user','tags'));
         
         //
     }
