@@ -9,7 +9,7 @@ use App\Tag;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use App\CustomLibraries\Slug;
-
+use Auth;
 
 class BloggerProfileController extends Controller
 {
@@ -21,15 +21,9 @@ class BloggerProfileController extends Controller
     public function index()
     {
         $user  = \Auth::user();
-
-        if($user->blogger) {
-
-            return redirect()->route('profile.edit', $user->blogger->id);
-        }
-        else{
-
-            return redirect()->route('profile.create');
-        }
+       
+       $this->forwardUserOnCreate($user);
+      
 
         //
     }
@@ -41,9 +35,13 @@ class BloggerProfileController extends Controller
      */
     public function create()
     {
+
         $user  = \Auth::user();
         $tags = Tag::tags();
-        return view('profile.create',compact('user','tags'));
+
+       return $this->forwardUserOnCreate($user);
+      
+       return view('profile.create',compact('user','tags'));
         
         //
     }
@@ -102,11 +100,12 @@ class BloggerProfileController extends Controller
      */
     public function show($slug)
     {
-        $user  = \Auth::user();
-
+        //$user  = \Auth::user();
         $profile = BloggerProfile::where('slug',$slug)->get()->first();
-        $myarticles = Article::where('user_id', $user->id)->get();
-        return view('profile.show',compact('profile','myarticles','user'));
+        $myarticles = Article::where('user_id', $profile->user_id)->get();
+
+        $classes = array("rgba-teal-strong","rgba-blue-strong","rgba-green-strong","rgba-stylish-strong");
+        return view('profile.show',compact('profile','myarticles','classes'));
         //
     }
 
@@ -217,5 +216,14 @@ class BloggerProfileController extends Controller
             return $newtags;
         }
     
-    
+        public function forwardUserOnCreate($user){
+
+        if($user->blogger) {
+
+            return redirect()->route('profile.edit', $user->blogger->id);
+        }
+      
+
+    }
+
 }

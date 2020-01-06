@@ -9,7 +9,7 @@
         <div class="col-md-12">
 
           <h5 class="my-5">If you want to cooperate with me just send me a message at 
-          <a href="mailto:{{$user->email}}"> &nbsp;{{$user->email}}</a></h5>
+          <a href="mailto:{{$profile->user->email}}"> &nbsp;{{$profile->user->email}}</a></h5>
         </div>
       </div>
       <!--/First row-->

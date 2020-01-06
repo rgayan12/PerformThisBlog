@@ -8,12 +8,10 @@
             </div>
           </li>
           <!--/. Logo -->
-           
           
-
             <ul class="collapsible collapsible-accordion mt-5">
                <li><a class="text-white" href="{{route('article.create')}}">
-              <i class="fas fa-chevron-right"></i> Compose </a>
+               <i class="far fa-file"></i> Compose </a>
             </li>
 
              <li><a class="text-white" href="{{route('article.index')}}">
@@ -21,13 +19,14 @@
             </li>
                 <li>
               @if($user->blogger)
-               <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-chevron-right"></i> Profile<i
+               <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-user"></i> Profile<i
                     class="fas fa-angle-down rotate-icon"></i></a>
                 <div class="collapsible-body">
                   <ul class="list-unstyled">
-                    <li><a href="{{route('profile.edit', $user->blogger->id) }}"><i class="fas fa-user mr-3"></i>Edit</a>
+                    <li><a href="{{route('profile.edit', [$user->blogger->id]) }}"><i class="fas fa-pen"></i>Edit</a>
                     </li>
-                    <li><a href="{{route('profile.show', $user->blogger->slug) }}" target="_blank"><i class="fas fa-table mr-3"></i>View</a>
+                    <li><a href="{{route('profile.show', $user->blogger->slug) }}" target="_blank">
+                      <i class="fas fa-eye"></i>View</a>
                     </li>
 
                   </ul>
@@ -38,7 +37,7 @@
               <li>
               <a class="text-white" href="{{route('profile.create') }}">
              
-              <i class="fas fa-chevron-right"></i> Profile </a>
+              <i class="fas fa-user"></i> Profile </a>
             </li>
              @endif
 

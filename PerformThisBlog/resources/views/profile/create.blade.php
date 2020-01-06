@@ -51,7 +51,7 @@
                     <div class="card-body">
 
                     {!! Form::label('summary', trans('Summary').'', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('summary', old('summary'), ['class' => 'form-control ', 'placeholder' => '', 'id' => 'content-tincy']) !!}
+                    {!! Form::textarea('summary', old('summary'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                     @if($errors->has('summary'))
                         <p class="help-block">
                             {{ $errors->first('summary') }}

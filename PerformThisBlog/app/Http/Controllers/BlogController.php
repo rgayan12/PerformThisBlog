@@ -33,7 +33,8 @@ class BlogController extends Controller
         $user = \Auth::User();
 
         $userID = $user->id;
-        $myarticles = Article::where('user_id', $userID)->get();
+        $myarticles = Article::where('user_id', $userID)->paginate(5);
+
         return view('article.index', compact('myarticles','user'));
         //
     }

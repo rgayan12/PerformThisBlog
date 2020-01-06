@@ -90,10 +90,10 @@
               <i class="fab fa-twitter grey-text"> </i>
             </a>
           
-            @if($user->id == $profile->user->id)
+            @if( Auth::user())
             <a href="{{route('article.index')}}">Go Back </a>
             @endif
-            <p class="mt-5">{!! $profile->summary !!}</p>
+            <p class="mt-5">{!! nl2br($profile->summary) !!}</p>
 
           </div>
           <!--Grid column-->
@@ -141,7 +141,7 @@
                       <div class="card card-image" style="background-image: url('{{ env('AWS_URL') .'thumbnails/thumbnail'.$article->page_image }}');">
 
                         <!-- Content -->
-                        <div class="text-left text-white d-flex rgba-blue-strong py-5 px-4">
+                        <div class="text-left text-white d-flex {{ $classes[array_rand($classes)]  }} py-5 px-4">
                           <div>
                             <h3 class="mb-4 mt-4 font-weight-bold">
                               <strong>{{ $article->title }}</strong>

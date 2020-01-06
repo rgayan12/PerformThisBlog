@@ -62,7 +62,7 @@
                     <div class="card-body">
 
                     {!! Form::label('summary', trans('Summary').'', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('summary', old('summary'), ['class' => 'form-control ', 'placeholder' => '', 'id' => 'content-tincy']) !!}
+                    {!! Form::textarea('summary', old('summary'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                     @if($errors->has('summary'))
                         <p class="help-block">
                             {{ $errors->first('summary') }}
@@ -154,8 +154,9 @@
                           <!--Card content-->
                           <div class="card-body">
                          
-                             
-                                <div class="file-field md-form">
+             <img class="card-img-top" src="{{ env('AWS_URL') .$user->id .'/avatar/'.$profile->avatar }}" alt="Card image cap" style="max-width: 50%">
+
+                                 <div class="file-field md-form">
                                         <div class="btn btn-primary btn-sm float-left">
                                                 <span>Choose file</span>
                                                 <input type="file" name="avatar">
