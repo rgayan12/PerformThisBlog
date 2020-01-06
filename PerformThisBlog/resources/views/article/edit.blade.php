@@ -111,7 +111,7 @@
               
                           <!--Card content-->
                           <div class="card-body">
-                             <img class="card-img-top" src="{{ env('AWS_URL') .'thumbnails/thumbnail'.$article->page_image }}" alt="Card image cap" style="max-width: 50%"> 
+                             <img class="card-img-top" src="{{ env('AWS_URL') .'thumbnails/'.$article->page_image }}" alt="Card image cap" style="max-width: 50%"> 
                              
                                 <div class="file-field md-form">
                                         <div class="btn btn-primary btn-sm float-left">

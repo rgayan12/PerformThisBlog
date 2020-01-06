@@ -19,7 +19,7 @@
         <!-- Card image -->
         <div class="view view-cascade overlay">
           @if($article->page_image)   
-          <img class="card-img-top img-thumbnail" src="{{ env('AWS_URL') .'thumbnails/thumbnail'.$article->page_image }}" alt="Card image cap" style="max-height: 160px;">
+          <img class="card-img-top img-thumbnail" src="{{ env('AWS_URL') .'thumbnails/'.$article->page_image }}" alt="Card image cap" style="max-height: 160px;">
           @endif
           <a>
             <div class="mask rgba-white-slight"></div>
