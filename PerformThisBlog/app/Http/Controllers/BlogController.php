@@ -221,7 +221,7 @@ class BlogController extends Controller
             });
 
             //Store the Thumbnail
-            Storage::disk('s3')->put('blog-images/thumbnails/'.'thumbnail'.$nfileName,
+            Storage::disk('s3')->put('blog-images/thumbnails/'.$nfileName,
                 $thumbImage->stream(), 'public');
 
             //Store the actual Version
