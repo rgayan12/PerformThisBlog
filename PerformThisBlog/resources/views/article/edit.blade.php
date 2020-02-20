@@ -9,7 +9,7 @@
       <div class="row">
       <div class="col-12">
      
-      <div class="px-2 md-form mt-3 w-100">
+      <div class="md-form mt-3 w-100">
       {!! Form::label('title', trans('Title').'', ['class' => 'control-label']) !!}
       {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '','required']) !!}
       @if($errors->has('title'))
@@ -24,21 +24,16 @@
           <div class="row">
                 <div class="col-xl-8 mb-4">
         
-                  <!--Card-->
-                  <div class="card">
-        
-                    <!--Card content-->
-                    <div class="card-body">
+                
 
-                    {!! Form::label('content', trans('Content').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('content', trans('Article').'', ['class' => 'control-label']) !!}
                     {!! Form::textarea('content', old('content'), ['class' => 'form-control ', 'placeholder' => '', 'id' => 'content-tincy','required']) !!}
                     @if($errors->has('content'))
                         <p class="help-block">
                             {{ $errors->first('content') }}
                         </p>
                     @endif
-                </div>
-                </div>
+               
                {!! Form::submit(trans('Update'), ['class' => 'btn btn-warning']) !!}
 
                 </div>

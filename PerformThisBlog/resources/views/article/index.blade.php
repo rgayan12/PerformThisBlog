@@ -12,7 +12,7 @@
 @if(count($myarticles) > 0 )   
 @foreach ($myarticles as $article)
 
-<div class="col-md-3 mt-2">  
+<div class="col-md-6 col-xl-4 mt-2">  
 <!-- Card Regular -->
 <div class="card card-cascade">
 
@@ -20,9 +20,7 @@
         <div class="row">
           <div class="col-md-4 pr-0">
             @if($article->page_image)   
-          
-              <img class="card-img-top img-thumbnail" src="{{ env('AWS_URL') .'thumbnails/'.$article->page_image }}" alt="Card image cap">
-    
+              <img class="card-img-top img-thumbnail" src="{{ env('AWS_URL') .'thumbnails/'.$article->page_image }}" alt="Card image cap" style="width:220px">
             @endif
 
             <div class="btn-group" role="group" aria-label="Basic example">
