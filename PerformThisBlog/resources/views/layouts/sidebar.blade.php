@@ -17,7 +17,15 @@
              <li><a class="text-white" href="{{route('article.index')}}">
               <i class="fas fa-chevron-right"></i> My Articles </a>
             </li>
-                <li>
+
+            @if (Gate::allows('all_article_manage')) 
+            <li><a class="text-white" href="{{route('all-articles')}}">
+              <i class="fas fa-chevron-right"></i> All Articles </a>
+            </li>
+            @endif
+
+
+            <li>
               @if($user->blogger)
                <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-user"></i> Profile<i
                     class="fas fa-angle-down rotate-icon"></i></a>

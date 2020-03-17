@@ -4,7 +4,17 @@
    @include('layouts.navbar')
 
          <main class="pt-5 mx-lg-5">
-  <!--Main layout-->
+          <div class="row">
+            <div class="col-12">
+              <div class="clearfix float-right">
+                {{ Form::open(['method' => 'DELETE', 'route' => ['article.destroy',$article->id] ])}}
+                 <button type="submit" class="btn btn-danger btn-lg btn-rounded text-lg"><i class="fas fa-trash fa-1x pr-2"
+                aria-hidden="true"></i></button>
+                {{ Form::close() }}
+            </div>
+            </div>
+          </div>
+      <!--Main layout-->
       {!! Form::model($article, ['method' => 'PUT', 'route' => ['article.update', $article->id], 'files' => true,]) !!}
       <div class="row">
       <div class="col-12">
@@ -87,17 +97,17 @@
                         </div>
                               <!--/.Card-->
                     <!--Card-->
-                    <div class="card mt-4 mb-4 card-cascade narrower">
+                    <div class="card mb-4">
               
                       <!-- Card header -->
-                      <div class="view view-cascade gradient-card-header blue-gradient">
-                      <h4 class="mb-0 font-weight-500">Tags</h4>
-                      </div>
+                      <div class="card-header text-center">
+                        Tags
+                        </div>
           
                       <!--Card content-->
                       <div class="card-body">
                           
-                            {!! Form::select('tags[]', $tags, old('tags'), ['class' => 'js-example-basic-multiple w-100', 'multiple' => 'multiple','required']) !!}
+                            {!! Form::select('tags[]', $tags, old('tags'), ['class' => 'js-example-basic-multiple', 'multiple' => 'multiple','required']) !!}
                             <p class="help-block"></p>
                             @if($errors->has('tags'))
                                 <p class="help-block">

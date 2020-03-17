@@ -8,6 +8,9 @@ use App\Article;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use App\CustomLibraries\Slug;
+use Illuminate\Support\Facades\Gate;
+
+
 
 class BlogController extends Controller
 {
@@ -37,6 +40,24 @@ class BlogController extends Controller
 
         return view('article.index', compact('myarticles','user'));
         //
+    }
+
+    public function all(){
+
+        $user = \Auth::User();
+
+        $roleId = $user->role_id;
+
+        if (Gate::allows('all_article_manage')) 
+        {
+            $myarticles = Article::paginate(20);
+            return view('article.index', compact('myarticles','user'));
+
+        }
+
+        else{
+            return redirect()->route('article.index');
+        }
     }
 
     /**
@@ -141,10 +162,17 @@ class BlogController extends Controller
         if($user->role_id == 7){
            $status['4'] = 'Published by Moderator';
         }
-
         $article = Article::findOrFail($id);
+
+        if(Gate::allows('all_article_manage') || $user->id == $article->user_id)
+        {
         return view ('article.edit',compact('tags','status','article','user'));
-   
+        }
+
+        else{
+            return redirect()->route('article.index');
+        }
+
         //
     }
 
@@ -171,8 +199,7 @@ class BlogController extends Controller
         }
 
        
-
-        return redirect()->route('article.index');
+        return redirect()->route('article.index')->with(['message'=> 'Operation Successfull']);
 
         //
     }
@@ -186,6 +213,22 @@ class BlogController extends Controller
     public function destroy($id)
     {
         //
+        //dd($id);
+        $user = \Auth::User();
+
+        $article = Article::findOrFail($id);
+
+        if(Gate::allows('all_article_manage') || $user->id == $article->user_id)
+        {
+            $article->delete();
+            return redirect()->route('article.index')->with(['message' => 'Operation Successfull']);
+        }
+        else{
+            return redirect()->route('article.index');
+        }
+        //$article->delete()
+
+
     }
 
     public function handleTags(Request $request, Article $article){

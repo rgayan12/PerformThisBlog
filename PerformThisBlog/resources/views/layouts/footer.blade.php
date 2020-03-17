@@ -2,15 +2,13 @@
   <footer class="page-footer mdb-color lighten-3 text-center text-md-center">
 
     <!--Footer Links-->
-    <div class="container">
+    <div class="container-fluid">
 
       <!--First row-->
       <div class="row">
-        <div class="col-md-12">
-
+         
           <h5 class="my-5">If you want to cooperate with me just send me a message at 
           <a href="mailto:{{$profile->user->email}}"> &nbsp;{{$profile->user->email}}</a></h5>
-        </div>
       </div>
       <!--/First row-->
     </div>

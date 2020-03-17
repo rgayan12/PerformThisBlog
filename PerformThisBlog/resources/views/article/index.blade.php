@@ -6,7 +6,15 @@
          <!--Main layout-->
 
 <main class="pt-5 mx-lg-5">
-
+  @if(session()->has('message'))
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <h2>{{session()->get('message')}}</h2>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  
+@endif
 <div class="container-fluid mt-5">
  <div class="row">   
 @if(count($myarticles) > 0 )   
