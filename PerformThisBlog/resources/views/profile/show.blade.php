@@ -86,7 +86,7 @@
               <i class="fab fa-linkedin grey-text"> </i>
             </a>
             <!--Twitter-->
-            <a class="p-2 m-2 fa-lg tw-ic" href="https://linkedin.com/{{ $profile->twitter }}" target="_blank">
+            <a class="p-2 m-2 fa-lg tw-ic" href="https://twitter.com/{{ $profile->twitter }}" target="_blank">
               <i class="fab fa-twitter grey-text"> </i>
             </a>
           
@@ -106,7 +106,7 @@
 
       <!--Section: Tabs-->
       <section>
-
+        @if(count($myarticles) > 0)
         <ul class="nav md-pills pills-default d-flex justify-content-center">
           <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#panel11" role="tab" aria-selected="true">
@@ -114,7 +114,7 @@
             </a>
           </li>
         </ul>
-
+        @endif
         <!-- Tab panels -->
         <div class="tab-content">
 
@@ -193,6 +193,5 @@
   </main>
   <!--Main Layout-->
   
-  @include('layouts.footer')
-
+  
 @endsection

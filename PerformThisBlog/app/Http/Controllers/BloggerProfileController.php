@@ -118,7 +118,7 @@ class BloggerProfileController extends Controller
     {
         //$user  = \Auth::user();
         $profile = BloggerProfile::where('slug',$slug)->get()->first();
-        $myarticles = Article::where('user_id', $profile->user_id)->get();
+        $myarticles = Article::where('user_id', $profile->user_id)->where('status', 1)->get();
 
         $classes = array("rgba-teal-strong","rgba-blue-strong","rgba-green-strong","rgba-stylish-strong");
         return view('profile.show',compact('profile','myarticles','classes'));

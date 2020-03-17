@@ -36,7 +36,7 @@ Route::get('profile/{profile}','BloggerProfileController@show')->name('profile.s
 Route::put('profile/{profile}','BloggerProfileController@update')->name('profile.update')->middleware('verified');
 Route::get('profile/{profile}/edit','BloggerProfileController@edit')->name('profile.edit')->middleware('verified');
 
-
+Route::get('all-articles',['as'=>'all-articles','uses' => 'BlogController@all'])->middleware('verified');
 
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback','Auth\LoginController@handleProviderCallback');

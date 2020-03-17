@@ -54,7 +54,7 @@
 
             <!--Card content-->
             <div class="card-body">
-            	 <textarea id="content-tincy" name="content" placeholder="Awesome article">{!! old('content', $article->content) !!}</textarea>
+            	 <textarea id="content-tincy" name="content">{!! old('content', $article->content) !!}</textarea>
               @if($errors->has('content'))
                <div class="alert alert-danger">
                    {{ $errors->first('content') }}
@@ -105,11 +105,11 @@
         <div class="col-md-3 mb-4">
 
           <!--Card-->
-     		 <div class="card mb-4 card-cascade narrower">
+     		 <div class="card mb-4">
 
             <!-- Card header -->
-           <div class="view view-cascade gradient-card-header blue-gradient">
-                <h4 class="mb-0 font-weight-500">Tags</h4>
+            <div class="card-header text-center">
+              Tags
               </div>
 
             <!--Card content-->

@@ -6,43 +6,64 @@
          <!--Main layout-->
 
 <main class="pt-5 mx-lg-5">
-
+  @if(session()->has('message'))
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <h2>{{session()->get('message')}}</h2>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  
+@endif
 <div class="container-fluid mt-5">
  <div class="row">   
 @if(count($myarticles) > 0 )   
 @foreach ($myarticles as $article)
 
-<div class="col-md-3 mt-2">  
+<div class="col-md-6 col-xl-4 mt-2">  
 <!-- Card Regular -->
 <div class="card card-cascade">
 
         <!-- Card image -->
+        <div class="row">
+          <div class="col-md-4 pr-0">
+            @if($article->page_image)   
+              <img class="card-img-top img-thumbnail" src="{{ env('AWS_URL') .'thumbnails/'.$article->page_image }}" alt="Card image cap" style="width:220px">
+            @endif
+
+            <div class="btn-group" role="group" aria-label="Basic example">
+            <!-- View -->
+            <a class="btn btn-floating btn-small btn-tw" href="{{ env('BLOG_VIEW_URI') .'/'. $article->slug }}" target="_blank"><i class="fas fa-eye"></i></a>
+            <!-- Edit -->
+            <a type="button" class="btn btn-floating btn-small btn-dribbble" href="{{ route('article.edit', $article->id )}}"><i class="fas fa-pencil-alt"></i></a>
+            </div> 
+
+          </div>
+          <div class="col-md-8 pl-0">
+            <div class="card-body card-body-cascade">
+      
+              <!-- Title -->
+              <a href="{{ route('article.edit', $article->id )}}"><h4 class="card-title"><strong>{{$article->title}}</strong></h4></a>
+              <!-- Subtitle -->
+              <!-- Text -->
+              <p class="card-text">
+                  {{ strip_tags(str_limit($article->content, $limit=150, $end = '....')) }}
+              </p>
+          
+ 
+            </div>
+          </div>
+        </div>
+
         <div class="view view-cascade overlay">
-          @if($article->page_image)   
-          <img class="card-img-top img-thumbnail" src="{{ env('AWS_URL') .'thumbnails/'.$article->page_image }}" alt="Card image cap" style="max-height: 160px;">
-          @endif
+         
           <a>
             <div class="mask rgba-white-slight"></div>
           </a>
         </div>
       
         <!-- Card content -->
-        <div class="card-body card-body-cascade text-center">
       
-          <!-- Title -->
-          <h4 class="card-title"><strong>{{$article->title}}</strong></h4>
-          <!-- Subtitle -->
-          <!-- Text -->
-          <p class="card-text">
-              {{ strip_tags(str_limit($article->content, $limit=150, $end = '....')) }}
-          </p>
-      
-          <!-- Twitter -->
-          <a type="button" class="btn-floating btn-small btn-tw" href="{{ env('BLOG_VIEW_URI') .'/'. $article->slug }}"><i class="fas fa-eye"></i></a>
-          <!-- Google + -->
-          <a type="button" class="btn-floating btn-small btn-dribbble" href="{{ route('article.edit', $article->id )}}"><i class="fas fa-pencil-alt"></i></a>
-      
-        </div>
       
       </div>
       <!-- Card Regular -->

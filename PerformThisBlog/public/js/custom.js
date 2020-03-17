@@ -61,7 +61,10 @@ $(document).ready(() => {
   // SideNav Initialization
   $(".button-collapse").sideNav();
 
-    $(function () {
-      $("#mdb-lightbox-ui").load("../mdb-addons/mdb-lightbox-ui.html");
-    });
+    
+});
+
+
+$(function () {
+  $("#mdb-lightbox-ui").load("../mdb/mdb-addons/mdb-lightbox-ui.html");
 });
